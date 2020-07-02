@@ -35,7 +35,7 @@ public class EmployerController {
         //the code I added
         else {
             employerRepository.save(newEmployer);
-            return "redirect";
+            return "redirect:../";
         }
     }
 

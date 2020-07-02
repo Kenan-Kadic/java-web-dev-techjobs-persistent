@@ -35,7 +35,7 @@ public class SkillController {
         //the code I added
         else {
             skillRepository.save(newSkill);
-            return "redirect";
+            return "redirect:../";
         }
     }
 
