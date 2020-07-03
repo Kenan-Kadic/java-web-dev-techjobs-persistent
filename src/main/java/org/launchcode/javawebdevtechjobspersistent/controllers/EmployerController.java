@@ -18,6 +18,14 @@ public class EmployerController {
     @Autowired
     private EmployerRepository employerRepository;
 
+    @RequestMapping("")
+    public String index(Model model) {
+
+        model.addAttribute("employers", employerRepository.findAll());
+
+        return "employers/index";
+    }
+
     @GetMapping("add")
     public String displayAddEmployerForm(Model model) {
         model.addAttribute(new Employer());
@@ -35,7 +43,7 @@ public class EmployerController {
         //the code I added
         else {
             employerRepository.save(newEmployer);
-            return "redirect:../";
+            return "redirect:";
         }
     }
 

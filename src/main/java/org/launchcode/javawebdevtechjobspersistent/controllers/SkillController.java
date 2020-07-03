@@ -18,6 +18,14 @@ public class SkillController {
     @Autowired
     private SkillRepository skillRepository;
 
+    @RequestMapping("")
+    public String index(Model model) {
+
+        model.addAttribute("skills", skillRepository.findAll());
+
+        return "skills/index";
+    }
+
     @GetMapping("add")
     public String displayAddSkillForm(Model model) {
         model.addAttribute(new Skill());
@@ -35,7 +43,7 @@ public class SkillController {
         //the code I added
         else {
             skillRepository.save(newSkill);
-            return "redirect:../";
+            return "redirect:";
         }
     }
 
