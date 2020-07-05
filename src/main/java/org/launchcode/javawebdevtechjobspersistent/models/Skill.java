@@ -9,8 +9,7 @@ public class Skill extends AbstractEntity {
     @Size(max = 500, message = "Description too long")
     private String description;
 
-    public Skill() {
-    }
+    public Skill() {}
 
     public String getDescription() {
             return description;

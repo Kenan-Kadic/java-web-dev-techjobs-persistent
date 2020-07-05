@@ -32,6 +32,7 @@ public class HomeController {
     public String displayAddJobForm(Model model) {
         model.addAttribute("title", "Add Job");
         model.addAttribute(new Job());
+        model.addAttribute("employers",employerRepository.findAll());
         return "add";
     }
 
@@ -41,6 +42,7 @@ public class HomeController {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Job");
+
             return "add";
         }
 
