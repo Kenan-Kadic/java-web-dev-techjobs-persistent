@@ -22,6 +22,7 @@ public class HomeController {
 
     @Autowired
     private EmployerRepository employerRepository;
+    @Autowired
     private JobRepository jobRepository;
 
     @RequestMapping("")
@@ -42,7 +43,7 @@ public class HomeController {
 
     @PostMapping("add")
     public String processAddJobForm(@ModelAttribute @Valid Job newJob,
-                                       Errors errors, Model model, @RequestParam int employerId, @RequestParam List<Integer> skills) {
+                                       Errors errors, Model model, @RequestParam int employerId) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Job");
@@ -63,7 +64,13 @@ public class HomeController {
     }
         @GetMapping("view/{jobId}")
         public String displayViewJob (Model model,@PathVariable int jobId){
-
-            return "view";
+            Optional optJob = jobRepository.findById(jobId);
+            if (optJob.isPresent()) {
+                Job job = (Job) optJob.get();
+                model.addAttribute("job", job);
+                return "view";
+            } else {
+                return "redirect:../";
+            }
         }
     }
